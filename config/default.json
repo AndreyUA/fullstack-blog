@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://andrey:qweqwe@cluster0.kllva.mongodb.net/mern-blog?retryWrites=true&w=majority",
+  "jwtSecret": "AndreyJSToken"
+}
