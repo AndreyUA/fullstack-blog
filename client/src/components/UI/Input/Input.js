@@ -11,6 +11,7 @@ const Input = ({
   label,
   labelTxt,
   className,
+  disabled = false,
 }) => {
   return (
     <div className="Input">
@@ -25,6 +26,7 @@ const Input = ({
         type={type}
         placeholder={placeholder}
         value={value}
+        disabled={disabled}
       />
     </div>
   );

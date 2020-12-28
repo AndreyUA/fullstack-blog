@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 import "./Registration.css";
 import Input from "../UI/Input/Input";
@@ -12,22 +13,52 @@ const Registration = (props) => {
     password2: "",
   });
 
+  const [isValid, setIsValid] = useState(false);
+
   const { name, email, password, password2 } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // надо добавить тут валидацию форм
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const body = JSON.stringify({ name, email, password });
+
+      console.log(body);
+
+      const response = await axios.post("/api/register", body, config);
+
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <div className="Registration">
       <div className="Registration_window">
         <h2>Registration</h2>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className="Registration_form" onSubmit={(e) => handleSubmit(e)}>
+          <Input
+            label="your-name"
+            labelTxt="Enter your name"
+            type="text"
+            name="name"
+            onChange={handleChange}
+            required={true}
+            placeholder="Your name"
+            value={name}
+          />
           <Input
             label="email"
             labelTxt="Enter your email"
@@ -57,9 +88,14 @@ const Registration = (props) => {
             value={password2}
           />
 
-          <p>Fill in all the fields.</p>
+          <p>Fill in all the fields!</p>
 
-          <Input className="Input_submit" type="submit" value="Registration" />
+          <Input
+            disabled={isValid}
+            className="Input_submit"
+            type="submit"
+            value="Registration"
+          />
         </form>
       </div>
     </div>

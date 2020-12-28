@@ -1,12 +1,23 @@
 .Registration {
-  width: 600px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 380px;
+  padding: 10px;
+  margin: 200px auto 0 auto;
+  background-color: coral;
+  border-radius: 10px;
 }
 
-.row {
-  margin: 0 !important;
+.Registration_form {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.Registration_form p {
+  font-weight: bold;
 }
