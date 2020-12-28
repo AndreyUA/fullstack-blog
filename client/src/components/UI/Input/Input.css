@@ -1,0 +1,17 @@
+.Input {
+  height: 50px;
+  width: 280px;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.Input input {
+  width: 100%;
+  height: 30px;
+  margin: 5px 0;
+}
+
+.Input_submit {
+  width: 86px !important;
+  height: 30px !important;
+}
