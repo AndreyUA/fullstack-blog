@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 import "./Registration.css";
 import Input from "../UI/Input/Input";
 
-const Registration = (props) => {
+import { connect } from "react-redux";
+
+const Registration = ({ isAuth }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,6 +24,7 @@ const Registration = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
     // надо добавить тут валидацию форм
+    // валидация пароля1 и пароля2
   };
 
   const handleSubmit = async (e) => {
@@ -35,15 +39,21 @@ const Registration = (props) => {
 
       const body = JSON.stringify({ name, email, password });
 
-      console.log(body);
-
       const response = await axios.post("/api/register", body, config);
 
       console.log(response.data);
     } catch (error) {
-      console.log(error.message);
+      const errors = error.response.data.errors;
+      console.log(errors);
     }
   };
+
+  // добавить редакс
+
+  if (isAuth) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="Registration">
       <div className="Registration_window">
@@ -94,7 +104,7 @@ const Registration = (props) => {
             disabled={isValid}
             className="Input_submit"
             type="submit"
-            value="Registration"
+            value="Submit"
           />
         </form>
       </div>
@@ -102,6 +112,10 @@ const Registration = (props) => {
   );
 };
 
-Registration.propTypes = {};
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+});
 
-export default Registration;
+Registration.propTypes = { isAuth: PropTypes.bool };
+
+export default connect(mapStateToProps)(Registration);

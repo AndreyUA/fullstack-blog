@@ -1,23 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import Landing from "./components/Landing/Landing";
 
 import Layout from "./components/Layout/Layout";
 import Login from "./components/Login/Login";
 import Registration from "./components/Registration/Registration";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Landing from "./components/Landing/Landing";
+import Posts from "./components/Posts/Posts";
+import setAuthToken from "./utils/setAuthToken";
+import PrivateRoute from "./components/routing/PrivateRoute";
+
+import { Provider } from "react-redux";
+import store from "./store/index";
+import { loadUser } from "./store/actions/auth";
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Layout>
-        <Switch>
-          <Route path="/" exact component={Landing} />
-          <Route path="/registration" component={Registration} />
-          <Route path="/login" component={Login} />
-          <Redirect to={"/"} />
-        </Switch>
-      </Layout>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Layout>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/registration" component={Registration} />
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/dashboard" exact component={Dashboard} />
+            <Route path="/posts" component={Posts} />
+            <Redirect to={"/"} />
+          </Switch>
+        </Layout>
+      </BrowserRouter>
+    </Provider>
   );
 };
 

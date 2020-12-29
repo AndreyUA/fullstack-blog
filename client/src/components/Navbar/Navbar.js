@@ -1,10 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 import "./Navbar.css";
 import blog from "../../img/blog.svg";
 
-const Nabar = () => {
+import { connect } from "react-redux";
+import { logout } from "../../store/actions/auth";
+
+const Nabar = ({ isAuth, loading, logout }) => {
+  useEffect(() => {
+    console.log(isAuth);
+  }, []);
+  const authLinks = (
+    <>
+      <li>
+        <NavLink to="/dashboard">
+          <span>dashboard</span>
+        </NavLink>
+      </li>
+      <li>
+        <a onClick={logout} href="#!">
+          <span>logout</span>
+        </a>
+      </li>
+    </>
+  );
+
+  const guestLinks = (
+    <>
+      <li>
+        <NavLink to="/registration">
+          <span>registration</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">
+          <span>login</span>
+        </NavLink>
+      </li>
+    </>
+  );
+
   return (
     <nav>
       <NavLink
@@ -17,14 +54,25 @@ const Nabar = () => {
       </NavLink>
       <ul className="Nav_navigation">
         <li>
-          <NavLink to="/registration">registration</NavLink>
+          <NavLink to="/posts">
+            <span>posts</span>
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/login">login</NavLink>
-        </li>
+        {!!isAuth && !loading ? authLinks : guestLinks}
       </ul>
     </nav>
   );
 };
 
-export default Nabar;
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+  loading: state.auth.loading,
+});
+
+Nabar.propTypes = {
+  isAuth: PropTypes.bool,
+  loading: PropTypes.bool,
+  logout: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, { logout })(Nabar);
