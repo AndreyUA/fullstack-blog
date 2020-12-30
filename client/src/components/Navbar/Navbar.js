@@ -12,12 +12,17 @@ const Nabar = ({ isAuth, loading, logout }) => {
   const authLinks = (
     <>
       <li>
+        <NavLink to="/posts">
+          <span>posts</span>
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard">
           <span>dashboard</span>
         </NavLink>
       </li>
       <li>
-        <a onClick={logout} href="#!">
+        <a onClick={logout} href="/">
           <span>logout</span>
         </a>
       </li>
@@ -50,11 +55,6 @@ const Nabar = ({ isAuth, loading, logout }) => {
         <img className="Nav_pic" src={blog} alt="logo link" />
       </NavLink>
       <ul className="Nav_navigation">
-        <li>
-          <NavLink to="/posts">
-            <span>posts</span>
-          </NavLink>
-        </li>
         {!!isAuth && !loading ? authLinks : guestLinks}
       </ul>
     </nav>

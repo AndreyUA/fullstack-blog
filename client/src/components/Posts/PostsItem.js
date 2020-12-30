@@ -14,6 +14,7 @@ const PostsItem = ({ post: { avatar, name, date, text } }) => {
           <Moment className="PostItem_date" format="DD MMMM, YYYY on HH:MM">
             {date}
           </Moment>
+          <button className="PostItem_delete">&#10006;</button>
         </div>
         <div className="PostsItem_content">
           <p className="PostItem_text">{text}</p>

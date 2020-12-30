@@ -7,8 +7,30 @@
 }
 
 .PostsItem_title {
+  position: relative;
   display: flex;
   flex-direction: row;
+}
+
+.PostItem_main {
+  width: 590px;
+}
+
+.PostItem_delete {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 6px;
+  right: 12px;
+  background-color: red;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.PostItem_delete:hover {
+  background-color: crimson;
 }
 
 .PostsItem_pic {
@@ -28,5 +50,5 @@
 }
 
 .PostsItem_content {
-  margin: 10px 0 0 10px;
+  margin: 10px 0 10px 10px;
 }

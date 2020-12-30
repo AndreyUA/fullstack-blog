@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_POSTS, GET_POST, ADD_POST } from "./types";
+import { GET_POSTS, ADD_POST } from "./types";
 
 // Get posts
 export const getPosts = () => async (dispatch) => {
@@ -13,7 +13,7 @@ export const getPosts = () => async (dispatch) => {
     });
   } catch (error) {
     const errors = error.response.data.errors;
-    console.log(errors);
+    console.log(error);
   }
 };
 

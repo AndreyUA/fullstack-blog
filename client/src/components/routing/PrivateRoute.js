@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={(props) =>
-      !isAuth && !loading ? <Redirect to="/" /> : <Component {...props} />
+      !isAuth && !!loading ? <Redirect to="/login" /> : <Component {...props} />
     }
   />
 );
