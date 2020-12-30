@@ -10,3 +10,7 @@ export const USER_LOADED = "USER_LOADED";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const GET_PROFILE = "GET_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+
+// posts
+export const GET_POSTS = "GET_POSTS";
+export const ADD_POST = "ADD_POST";

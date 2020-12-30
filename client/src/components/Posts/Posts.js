@@ -1,26 +1,34 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
-import axios from "axios";
+import "./Posts.css";
+import PostItem from "./PostsItem";
 
-const Posts = (props) => {
+import { connect } from "react-redux";
+import { getPosts } from "../../store/actions/posts";
+
+const Posts = ({ posts: { posts }, getPosts }) => {
   useEffect(() => {
-    // пока что не работает из-за авторизации
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/posts");
-
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  return <div>all posts</div>;
+    getPosts();
+  }, [getPosts]);
+  return (
+    <div className="Posts">
+      {posts.map((post) => (
+        <div key={post._id}>
+          <PostItem post={post} />
+        </div>
+      ))}
+    </div>
+  );
 };
 
-Posts.propTypes = {};
+Posts.propTypes = {
+  posts: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+};
 
-export default Posts;
+const mapStateToProps = (state) => ({
+  posts: state.posts,
+});
+
+export default connect(mapStateToProps, { getPosts })(Posts);

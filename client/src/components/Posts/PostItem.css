@@ -1,0 +1,32 @@
+.PostsItem {
+  display: flex;
+  position: relative;
+  margin: 10px 0;
+  background-color: #edeeef;
+  border-radius: 10px;
+}
+
+.PostsItem_title {
+  display: flex;
+  flex-direction: row;
+}
+
+.PostsItem_pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  margin: 10px 0 10px 10px;
+}
+
+.PostItem_name {
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.PostItem_date {
+  color: #6d6d6d;
+}
+
+.PostsItem_content {
+  margin: 10px 0 0 10px;
+}

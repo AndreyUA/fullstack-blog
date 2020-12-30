@@ -9,9 +9,6 @@ import { connect } from "react-redux";
 import { logout } from "../../store/actions/auth";
 
 const Nabar = ({ isAuth, loading, logout }) => {
-  useEffect(() => {
-    console.log(isAuth);
-  }, []);
   const authLinks = (
     <>
       <li>
