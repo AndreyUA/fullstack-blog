@@ -1,0 +1,21 @@
+.AddPostForm {
+  margin-bottom: 20px;
+}
+
+.AddPostForm_txtarea {
+  display: block;
+  width: 690px;
+  height: 60px;
+  outline: none;
+  resize: none;
+  margin: 10px auto;
+}
+
+.AddPostForm_input {
+  width: 60px;
+  height: auto;
+}
+
+.AddPostForm_sub {
+  margin: 0 0 0 2px !important;
+}

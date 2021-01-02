@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import "./Posts.css";
 import PostItem from "./PostsItem";
+import AddPostForm from "./AddPostForm";
 
 import { connect } from "react-redux";
 import { getPosts } from "../../store/actions/posts";
@@ -11,11 +12,11 @@ import { getPosts } from "../../store/actions/posts";
 const Posts = ({ posts: { posts }, getPosts, isAuth }) => {
   useEffect(() => {
     getPosts();
-    console.log("fetch");
   }, [getPosts]);
 
   return (
     <div className="Posts">
+      <AddPostForm />
       {posts.map((post) => (
         <div key={post._id}>
           <PostItem post={post} />

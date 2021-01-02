@@ -13,7 +13,7 @@ export const getPosts = () => async (dispatch) => {
     });
   } catch (error) {
     const errors = error.response.data.errors;
-    console.log(error);
+    console.log(errors);
   }
 };
 

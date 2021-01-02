@@ -12,9 +12,10 @@ const Input = ({
   labelTxt,
   className,
   disabled = false,
+  addClassName = null,
 }) => {
   return (
-    <div className="Input">
+    <div className={`Input ${addClassName}`}>
       {label ? <label htmlFor={label}>{labelTxt}</label> : null}
 
       <input
