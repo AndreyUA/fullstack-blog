@@ -1,0 +1,14 @@
+.Post {
+  position: relative;
+  width: 700px;
+  min-height: 700px;
+  background-color: #edeeef;
+  margin: 30px auto;
+}
+
+.Post_back {
+  display: flex;
+  height: 30px;
+  padding: 5px;
+  margin-bottom: 20px;
+}

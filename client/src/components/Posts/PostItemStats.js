@@ -20,7 +20,7 @@ const PostItemStats = ({ postId, comments, likes, addLike, removeLike }) => {
         className="PostItemStats_likes add_like_btn"
         type="button"
       >
-        <img className="PostItemStats_pic" src={`${like}`} alt="" />
+        <img className="PostItemStats_pic" src={`${like}`} alt="like" />
         <span>{`${likes.length}`}</span>
         <span className="PostItemStats_txt">Add like</span>
       </button>
@@ -32,7 +32,11 @@ const PostItemStats = ({ postId, comments, likes, addLike, removeLike }) => {
         className="PostItemStats_likes remove_like_btn"
         type="button"
       >
-        <img className="PostItemStats_pic remove_like" src={`${like}`} alt="" />
+        <img
+          className="PostItemStats_pic remove_like"
+          src={`${like}`}
+          alt="unlike"
+        />
         <span className="PostItemStats_txt">Remove like</span>
       </button>
       <Link
