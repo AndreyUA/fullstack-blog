@@ -88,3 +88,15 @@ export const addLike = (id) => async (dispatch) => {
     console.log(errors);
   }
 };
+
+// Remove like
+export const removeLike = (id) => async (dispatch) => {
+  try {
+    const response = await axios.put(`/api/posts/removelike/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKE,
+      payload: { id, likes: response.data },
+    });
+  } catch {}
+};

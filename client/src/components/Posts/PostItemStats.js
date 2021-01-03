@@ -7,9 +7,9 @@ import like from "../../img/like.svg";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { addLike } from "../../store/actions/posts";
+import { addLike, removeLike } from "../../store/actions/posts";
 
-const PostItemStats = ({ postId, comments, likes, addLike }) => {
+const PostItemStats = ({ postId, comments, likes, addLike, removeLike }) => {
   return (
     <div className="PostItemStats">
       <button
@@ -24,7 +24,14 @@ const PostItemStats = ({ postId, comments, likes, addLike }) => {
         <span>{`${likes.length}`}</span>
         <span className="PostItemStats_txt">Add like</span>
       </button>
-      <button className="PostItemStats_likes remove_like_btn" type="button">
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          removeLike(postId);
+        }}
+        className="PostItemStats_likes remove_like_btn"
+        type="button"
+      >
         <img className="PostItemStats_pic remove_like" src={`${like}`} alt="" />
         <span className="PostItemStats_txt">Remove like</span>
       </button>
@@ -38,6 +45,12 @@ const PostItemStats = ({ postId, comments, likes, addLike }) => {
   );
 };
 
-PostItemStats.propTypes = { postId: PropTypes.string.isRequired };
+PostItemStats.propTypes = {
+  postId: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+  likes: PropTypes.array.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+};
 
-export default connect(null, { addLike })(PostItemStats);
+export default connect(null, { addLike, removeLike })(PostItemStats);

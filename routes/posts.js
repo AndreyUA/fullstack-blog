@@ -107,7 +107,7 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
-// @route       GET api/posts/addlike/:id
+// @route       PUT api/posts/addlike/:id
 // @desc        Get post by ID
 // @access      Private
 router.put("/addlike/:id", auth, async (req, res) => {
@@ -123,6 +123,37 @@ router.put("/addlike/:id", auth, async (req, res) => {
     }
 
     post.likes.unshift({ user: req.user.id });
+
+    await post.save();
+
+    res.json(post.likes);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route       PUT api/posts/addlike/:id
+// @desc        Get post by ID
+// @access      Private
+router.put("/removelike/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // check like by CURRENT user
+    if (
+      post.likes.filter((like) => like.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: "You haven't liked this post yet" });
+    }
+
+    // remove index
+    const removeIndex = post.likes.findIndex(
+      (like) => like.user.toString() === req.user.id
+    );
+
+    post.likes.splice(removeIndex, 1);
 
     await post.save();
 
