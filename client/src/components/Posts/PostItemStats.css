@@ -1,0 +1,56 @@
+.PostItemStats {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 30px;
+  padding: 5px;
+}
+
+.PostItemStats_likes,
+.PostItemStats_link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 130px;
+  margin: 0 10px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.PostItemStats_likes:hover,
+.PostItemStats_link:hover {
+  opacity: 0.6;
+}
+
+.PostItemStats_pic {
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+
+.remove_like {
+  transform: rotate(180deg);
+}
+
+.add_like_btn {
+  background-color: #1cbf1c;
+}
+
+.remove_like_btn {
+  background-color: #ef5d5d;
+}
+
+.PostItemStats_txt {
+  font-weight: bold;
+}
+
+.link_comments {
+  background-color: coral;
+  color: black;
+  text-decoration: none;
+}

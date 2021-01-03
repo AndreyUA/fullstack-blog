@@ -5,14 +5,17 @@ import Moment from "react-moment";
 import "./PostItem.css";
 
 import { connect } from "react-redux";
+import { deletePost } from "../../store/actions/posts";
+import PostItemStats from "./PostItemStats";
 
 const PostsItem = ({
-  post: { avatar, name, date, text, user, _id: postId },
+  post: { avatar, name, date, text, user, _id: postId, comments, likes },
   user: { _id },
+  deletePost,
 }) => {
   const deletePostHandler = (e) => {
     e.preventDefault();
-    console.log("delete it! ", postId);
+    deletePost(postId);
   };
   return (
     <div className="PostsItem">
@@ -35,6 +38,7 @@ const PostsItem = ({
         <div className="PostsItem_content">
           <p className="PostItem_text">{text}</p>
         </div>
+        <PostItemStats postId={postId} comments={comments} likes={likes} />
       </div>
     </div>
   );
@@ -47,6 +51,7 @@ const mapStateToProps = (state) => ({
 PostsItem.propTypes = {
   post: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(PostsItem);
+export default connect(mapStateToProps, { deletePost })(PostsItem);

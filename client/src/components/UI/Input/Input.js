@@ -19,7 +19,9 @@ const Input = ({
       {label ? <label htmlFor={label}>{labelTxt}</label> : null}
 
       <input
-        className={className}
+        className={
+          type === "submit" ? `${className} cursor_pointer` : className
+        }
         id={label}
         name={name}
         onChange={onChange}

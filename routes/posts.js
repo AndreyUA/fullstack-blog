@@ -53,4 +53,84 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// @route       DELETE api/posts/:id
+// @desc        Delete post by ID
+// @access      Private
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // check post exists
+    if (!post) {
+      return res.status(400).json({ msg: "Post not found" });
+    }
+
+    // check user
+    if (post.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "User not authorized" });
+    }
+
+    await post.remove();
+
+    res.json({ msg: "Post removed" });
+  } catch (error) {
+    onsole.log(error.message);
+
+    if (error.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+
+    res.status(500).send("Server error");
+  }
+});
+
+// @route       GET api/posts/:id
+// @desc        Get post by ID
+// @access      Private
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+
+    res.json(post);
+  } catch (error) {
+    console.log(error.message, "!");
+
+    if (error.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+
+    res.status(500).send("Server error");
+  }
+});
+
+// @route       GET api/posts/addlike/:id
+// @desc        Get post by ID
+// @access      Private
+router.put("/addlike/:id", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // check like by CURRENT user
+    if (
+      post.likes.filter((like) => like.user.toString() === req.user.id).length >
+      0
+    ) {
+      return res.status(400).json({ msg: "Post already liked!" });
+    }
+
+    post.likes.unshift({ user: req.user.id });
+
+    await post.save();
+
+    res.json(post.likes);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
