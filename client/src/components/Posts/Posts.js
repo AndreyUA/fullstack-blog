@@ -8,8 +8,9 @@ import AddPostForm from "./AddPostForm";
 
 import { connect } from "react-redux";
 import { getPosts } from "../../store/actions/posts";
+import Loader from "../UI/Loader/Loader";
 
-const Posts = ({ posts: { posts }, getPosts, isAuth }) => {
+const Posts = ({ posts: { posts }, getPosts }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
@@ -17,11 +18,15 @@ const Posts = ({ posts: { posts }, getPosts, isAuth }) => {
   return (
     <div className="Posts">
       <AddPostForm />
-      {posts.map((post) => (
-        <div key={post._id}>
-          <PostItem post={post} />
-        </div>
-      ))}
+      {posts.length === 0 ? (
+        <Loader />
+      ) : (
+        posts.map((post) => (
+          <div key={post._id}>
+            <PostItem post={post} />
+          </div>
+        ))
+      )}
     </div>
   );
 };

@@ -23,7 +23,7 @@ const PostsItem = ({
       <div className="PostItem_main">
         <div className="PostsItem_title">
           <p className="PostItem_name">{name}</p>
-          <Moment className="PostItem_date" format="DD MMMM, YYYY on HH:MM">
+          <Moment className="PostItem_date" format="DD MMMM, YYYY on HH:mm">
             {date}
           </Moment>
           {_id === user ? (

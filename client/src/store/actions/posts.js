@@ -6,6 +6,7 @@ import {
   DELETE_POST,
   GET_POST,
   UPDATE_LIKE,
+  ADD_COMMENT,
 } from "./types";
 
 // Get posts
@@ -98,5 +99,33 @@ export const removeLike = (id) => async (dispatch) => {
       type: UPDATE_LIKE,
       payload: { id, likes: response.data },
     });
-  } catch {}
+  } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+  }
+};
+
+// Add comment
+export const addComment = (id, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await axios.post(
+      `/api/posts/comment/${id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: ADD_COMMENT,
+      payload: response.data,
+    });
+  } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+  }
 };
