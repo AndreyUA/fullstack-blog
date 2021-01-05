@@ -1,8 +1,12 @@
 .Comment {
+  position: relative;
   display: flex;
   flex-direction: row;
-  margin: 5px 0;
+  margin: 5px auto;
+  width: 96%;
   padding: 5px;
+  background-color: #d6d7d8;
+  border-radius: 10px;
 }
 
 .Comment_author {
@@ -11,6 +15,7 @@
   align-items: center;
   justify-content: center;
   min-width: 100px;
+  text-align: center;
 }
 
 .Comment_avatar {
@@ -33,4 +38,22 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
+}
+
+.Comment_delete {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 6px;
+  left: 6px;
+  background-color: red;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.Comment_delete:hover {
+  background-color: crimson;
 }

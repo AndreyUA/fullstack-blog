@@ -4,7 +4,16 @@ import PropTypes from "prop-types";
 import Moment from "react-moment";
 import "./Comment.css";
 
-const Comment = ({ comment: { text, avatar, date, name } }) => {
+import { connect } from "react-redux";
+
+const Comment = ({
+  comment: { text, avatar, date, name, user },
+  user: { _id },
+}) => {
+  const deletePostHandler = (e) => {
+    e.preventDefault();
+    console.log("delete");
+  };
   return (
     <div className="Comment">
       <div className="Comment_author">
@@ -20,10 +29,22 @@ const Comment = ({ comment: { text, avatar, date, name } }) => {
           {date}
         </Moment>
       </div>
+      {_id === user ? (
+        <button
+          onClick={(e) => deletePostHandler(e)}
+          className="Comment_delete"
+        >
+          &#10006;
+        </button>
+      ) : null}
     </div>
   );
 };
 
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
 Comment.propTypes = { comment: PropTypes.object.isRequired };
 
-export default Comment;
+export default connect(mapStateToProps)(Comment);

@@ -2,8 +2,15 @@
   position: relative;
   width: 700px;
   min-height: 300px;
-  background-color: #edeeef;
   margin: 30px auto;
+}
+
+.Post_wrapper {
+  background-color: #edeeef;
+  width: 96%;
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .Post_back {

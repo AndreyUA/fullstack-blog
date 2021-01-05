@@ -201,4 +201,30 @@ router.post(
   }
 );
 
+// @route       DELETE api/posts/comment/:id
+// @desc        Remove comment for post by ID
+// @access      Private
+router.delete("/comment/:id/:commentId", auth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    // check existing
+    const comment = post.comments.find(
+      (comment) => comment.id === req.params.commentId
+    );
+
+    if (!comment) {
+      return res.status(404).json({ msg: "Comment not found" });
+    }
+
+    // check user
+    if (comment.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "User not authorized" });
+    }
+
+    // remove index
+    // ???????????????
+  } catch (error) {}
+});
+
 module.exports = router;

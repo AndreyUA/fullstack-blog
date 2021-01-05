@@ -19,33 +19,36 @@ const Post = ({ posts: { post }, getPost, match, user: { _id } }) => {
     <>
       {post ? (
         <div className="Post">
-          <div className="Post_back">
-            <Link className="PostItemStats_link link_comments" to="/posts">
-              <span className="PostItemStats_txt">Back to posts</span>
-            </Link>
-          </div>
-          <div className="Post_body">
-            <div className="Post_head">
-              <img className="Post_avatar" src={post.avatar} alt="avatar" />
-              {post.user === _id ? (
-                <h4 className="Post_name">It's your post.</h4>
-              ) : (
-                <h4 className="Post_name">{`Posted by ${post.name}`}</h4>
-              )}
+          <div className="Post_wrapper">
+            <div className="Post_back">
+              <Link className="PostItemStats_link link_comments" to="/posts">
+                <span className="PostItemStats_txt">Back to posts</span>
+              </Link>
             </div>
-            <div className="Post_content">
-              <p>{post.text}</p>
-              <Moment
-                className="PostItem_date Post_date"
-                format="DD MMMM, YYYY on HH:mm"
-              >
-                {post.date}
-              </Moment>
+            <div className="Post_body">
+              <div className="Post_head">
+                <img className="Post_avatar" src={post.avatar} alt="avatar" />
+                {post.user === _id ? (
+                  <h4 className="Post_name">It's your post.</h4>
+                ) : (
+                  <h4 className="Post_name">{`Posted by ${post.name}`}</h4>
+                )}
+              </div>
+              <div className="Post_content">
+                <p>{post.text}</p>
+                <Moment
+                  className="PostItem_date Post_date"
+                  format="DD MMMM, YYYY on HH:mm"
+                >
+                  {post.date}
+                </Moment>
+              </div>
+            </div>
+            <div className="Post_form">
+              <AddCommentForm postId={match.params.id} />
             </div>
           </div>
-          <div className="Post_form">
-            <AddCommentForm postId={match.params.id} />
-          </div>
+
           <div className="Post_comment">
             {post.comments.map((comment) => (
               <div key={comment._id}>
