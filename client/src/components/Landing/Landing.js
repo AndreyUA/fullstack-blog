@@ -10,7 +10,7 @@ function Landing() {
   return (
     <div className="Landing">
       <div className="Landing_content">
-        <h1>Welcome to MERN GameZone</h1>
+        <h1>Welcome to MERN blog</h1>
         <h3>This site is using MERN stack</h3>
         <div className="Landing_block">
           <div>

@@ -22,7 +22,7 @@ const PostItemStats = ({ postId, comments, likes, addLike, removeLike }) => {
       >
         <img className="PostItemStats_pic" src={`${like}`} alt="like" />
         <span>{`${likes.length}`}</span>
-        <span className="PostItemStats_txt">Add like</span>
+        <span className="PostItemStats_txt">Like</span>
       </button>
       <button
         onClick={(e) => {
@@ -37,7 +37,7 @@ const PostItemStats = ({ postId, comments, likes, addLike, removeLike }) => {
           src={`${like}`}
           alt="unlike"
         />
-        <span className="PostItemStats_txt">Remove like</span>
+        <span className="PostItemStats_txt">Unlike</span>
       </button>
       <Link
         className="PostItemStats_link link_comments"

@@ -44,9 +44,10 @@ const Post = ({ posts: { post }, getPost, match, user: { _id } }) => {
                 </Moment>
               </div>
             </div>
-            <div className="Post_form">
-              <AddCommentForm postId={match.params.id} />
-            </div>
+          </div>
+
+          <div className="Post_form">
+            <AddCommentForm postId={match.params.id} />
           </div>
 
           <div className="Post_comment">

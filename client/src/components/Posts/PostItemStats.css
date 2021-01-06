@@ -13,6 +13,20 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  min-width: 90px;
+  margin: 0 10px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.PostItemStats_link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   min-width: 130px;
   margin: 0 10px;
   outline: none;
