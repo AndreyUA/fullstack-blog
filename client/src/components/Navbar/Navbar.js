@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import "./Navbar.css";
 import blog from "../../img/blog.svg";
+import logout_pic from "../../img/logout.svg";
 
 import { connect } from "react-redux";
 import { logout } from "../../store/actions/auth";
@@ -23,6 +24,7 @@ const Nabar = ({ isAuth, loading, logout }) => {
       </li>
       <li>
         <a onClick={logout} href="/">
+          <img className="Nav_logout" src={logout_pic} alt="logout" />
           <span>logout</span>
         </a>
       </li>

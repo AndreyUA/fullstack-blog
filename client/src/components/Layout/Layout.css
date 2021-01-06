@@ -1,0 +1,21 @@
+.Layout {
+  overflow: hidden;
+  position: relative;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Layout_canvas {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  z-index: -1;
+}

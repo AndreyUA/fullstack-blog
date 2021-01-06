@@ -2,7 +2,8 @@
   position: relative;
   width: 700px;
   min-height: 300px;
-  margin: 30px auto;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .Post_wrapper {

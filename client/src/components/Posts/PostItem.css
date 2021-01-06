@@ -7,6 +7,10 @@
   border-radius: 10px;
 }
 
+.PostsItem:last-child {
+  margin: 10px 0 0 0;
+}
+
 .PostsItem_title {
   position: relative;
   display: flex;

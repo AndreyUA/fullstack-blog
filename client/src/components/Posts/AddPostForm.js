@@ -18,7 +18,7 @@ const AddPostForm = ({ addPost }) => {
   };
   return (
     <div className="AddPostForm">
-      <h3 className="AddPostForm-text">Add new post...</h3>
+      <h3 className="AddPostForm_text">Add new post...</h3>
       <form onSubmit={(e) => submitHandler(e)} className="AddPostForm_form">
         <textarea
           className="AddPostForm_txtarea"

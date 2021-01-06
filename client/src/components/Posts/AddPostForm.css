@@ -2,6 +2,10 @@
   margin-bottom: 20px;
 }
 
+.AddPostForm_text {
+  color: coral;
+}
+
 .AddPostForm_txtarea {
   display: block;
   width: 690px;

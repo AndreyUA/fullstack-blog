@@ -9,6 +9,10 @@
   border-radius: 10px;
 }
 
+.Comment:last-child {
+  margin: 5px auto 0 auto;
+}
+
 .Comment_author {
   display: flex;
   flex-direction: column;

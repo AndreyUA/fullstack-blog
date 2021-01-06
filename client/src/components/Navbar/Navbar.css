@@ -88,3 +88,8 @@ nav::after {
   background-color: #0060fc;
   color: #fff;
 }
+
+.Nav_logout {
+  width: 20px;
+  height: 20px;
+}
