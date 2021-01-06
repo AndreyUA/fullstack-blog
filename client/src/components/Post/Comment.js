@@ -5,14 +5,17 @@ import Moment from "react-moment";
 import "./Comment.css";
 
 import { connect } from "react-redux";
+import { deleteComment } from "../../store/actions/posts";
 
 const Comment = ({
-  comment: { text, avatar, date, name, user },
+  comment: { text, avatar, date, name, user, _id: commentId },
   user: { _id },
+  deleteComment,
+  postId,
 }) => {
   const deletePostHandler = (e) => {
     e.preventDefault();
-    console.log("delete");
+    deleteComment(postId, commentId);
   };
   return (
     <div className="Comment">
@@ -45,6 +48,11 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-Comment.propTypes = { comment: PropTypes.object.isRequired };
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  postId: PropTypes.string.isRequired,
+};
 
-export default connect(mapStateToProps)(Comment);
+export default connect(mapStateToProps, { deleteComment })(Comment);

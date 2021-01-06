@@ -201,7 +201,7 @@ router.post(
   }
 );
 
-// @route       DELETE api/posts/comment/:id
+// @route       DELETE api/posts/comment/:id/:commentId
 // @desc        Remove comment for post by ID
 // @access      Private
 router.delete("/comment/:id/:commentId", auth, async (req, res) => {
@@ -223,8 +223,19 @@ router.delete("/comment/:id/:commentId", auth, async (req, res) => {
     }
 
     // remove index
-    // ???????????????
-  } catch (error) {}
+    const removeIndex = post.comments.findIndex(
+      (comment) => comment._id.toString() === req.params.commentId
+    );
+
+    post.comments.splice(removeIndex, 1);
+
+    await post.save();
+
+    res.json(post.comments);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;

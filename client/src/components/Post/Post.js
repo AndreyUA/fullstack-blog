@@ -52,7 +52,7 @@ const Post = ({ posts: { post }, getPost, match, user: { _id } }) => {
           <div className="Post_comment">
             {post.comments.map((comment) => (
               <div key={comment._id}>
-                <Comment comment={comment} />
+                <Comment comment={comment} postId={match.params.id} />
               </div>
             ))}
           </div>
