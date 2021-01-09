@@ -7,8 +7,9 @@ import "./Registration.css";
 import Input from "../UI/Input/Input";
 
 import { connect } from "react-redux";
+import { registration } from "../../store/actions/auth";
 
-const Registration = ({ isAuth }) => {
+const Registration = ({ isAuth, registration }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,25 +31,8 @@ const Registration = ({ isAuth }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const body = JSON.stringify({ name, email, password });
-
-      const response = await axios.post("/api/register", body, config);
-
-      console.log(response.data);
-    } catch (error) {
-      const errors = error.response.data.errors;
-      console.log(errors);
-    }
+    registration(formData);
   };
-
-  // добавить редакс
 
   if (isAuth) {
     return <Redirect to="/" />;
@@ -118,4 +102,4 @@ const mapStateToProps = (state) => ({
 
 Registration.propTypes = { isAuth: PropTypes.bool };
 
-export default connect(mapStateToProps)(Registration);
+export default connect(mapStateToProps, { registration })(Registration);

@@ -5,6 +5,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
+  REGISTER_SUCCESS,
   USER_LOADED,
 } from "./types";
 import setAuthToken from "../../utils/setAuthToken";
@@ -22,7 +23,35 @@ export const loadUser = () => async (dispatch) => {
       type: USER_LOADED,
       payload: response.data,
     });
-  } catch (error) {}
+  } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+  }
+};
+
+// Create new user
+export const registration = ({ name, email, password }) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ name, email, password });
+
+  try {
+    const response = await axios.post("/api/register", body, config);
+
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: response.data,
+    });
+
+    dispatch(loadUser());
+  } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+  }
 };
 
 // Login
