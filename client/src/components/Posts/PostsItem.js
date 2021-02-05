@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Moment from "react-moment";
@@ -13,10 +13,18 @@ const PostsItem = ({
   user: { _id },
   deletePost,
 }) => {
+  const [fullPost, setFullPost] = useState(false);
+
+  const fullPostChangeHandler = (e) => {
+    e.preventDefault();
+    setFullPost(!fullPost);
+  };
+
   const deletePostHandler = (e) => {
     e.preventDefault();
     deletePost(postId);
   };
+
   return (
     <div className="PostsItem">
       <img className="PostsItem_pic" src={avatar} alt="avatar_pic" />
@@ -36,7 +44,31 @@ const PostsItem = ({
           ) : null}
         </div>
         <div className="PostsItem_content">
-          <p className="PostItem_text">{text}</p>
+          {text.split(" ").length > 30 ? (
+            fullPost ? (
+              <p className="PostItem_text">
+                {text}{" "}
+                <button
+                  className="PostItem_btn PostItem_btn_less"
+                  onClick={(e) => fullPostChangeHandler(e)}
+                >
+                  read less
+                </button>
+              </p>
+            ) : (
+              <p className="PostItem_text">
+                {text.split(" ").slice(0, 29).join(" ")}...
+                <button
+                  className="PostItem_btn PostItem_btn_more"
+                  onClick={(e) => fullPostChangeHandler(e)}
+                >
+                  read more
+                </button>
+              </p>
+            )
+          ) : (
+            <p className="PostItem_text">{text}</p>
+          )}
         </div>
         <PostItemStats postId={postId} comments={comments} likes={likes} />
       </div>

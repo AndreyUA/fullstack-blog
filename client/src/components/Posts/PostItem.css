@@ -57,3 +57,27 @@
 .PostsItem_content {
   margin: 10px 0 10px 10px;
 }
+
+.PostItem_btn {
+  cursor: pointer;
+  margin: 0 5px;
+  min-width: 78px;
+  padding: 3px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.PostItem_btn_more {
+  background-color: #1cbf1c;
+}
+
+.PostItem_btn_less {
+  background-color: #ef5d5d;
+}
+
+.PostItem_btn_more:hover,
+.PostItem_btn_less:hover {
+  opacity: 0.6;
+}

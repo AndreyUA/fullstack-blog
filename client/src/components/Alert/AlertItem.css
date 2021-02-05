@@ -1,0 +1,14 @@
+.AlertItem {
+  width: 260px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.AlertItem_danger {
+  background-color: #ef5d5d;
+}
+
+.AlertItem_success {
+  background-color: #1cbf1c;
+}

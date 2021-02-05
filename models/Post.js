@@ -19,6 +19,11 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  isRemoved: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   comments: [
     {
       user: {

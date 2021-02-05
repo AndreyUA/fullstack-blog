@@ -1,0 +1,14 @@
+.Alert {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 280px;
+    padding: 10px;
+    max-height: 800px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
+}

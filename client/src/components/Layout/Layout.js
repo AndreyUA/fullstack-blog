@@ -2,6 +2,7 @@ import React from "react";
 
 import Navbar from "../Navbar/Navbar";
 import Canvas from "../Canvas/Canvas";
+import Alert from "../Alert/Alert";
 import "./Layout.css";
 
 const Layout = ({ children }) => {
@@ -12,6 +13,7 @@ const Layout = ({ children }) => {
       {children}
       <div className="Layout_canvas">
         <Canvas />
+        <Alert />
       </div>
     </>
   );

@@ -9,6 +9,7 @@ import {
   USER_LOADED,
 } from "./types";
 import setAuthToken from "../../utils/setAuthToken";
+import { setAlert } from "./alert";
 
 // Load user
 export const loadUser = () => async (dispatch) => {
@@ -24,8 +25,7 @@ export const loadUser = () => async (dispatch) => {
       payload: response.data,
     });
   } catch (error) {
-    const errors = error.response.data.errors;
-    console.log(errors);
+    console.log(error);
   }
 };
 
@@ -48,9 +48,13 @@ export const registration = ({ name, email, password }) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+    dispatch(setAlert("User created", "success"));
   } catch (error) {
     const errors = error.response.data.errors;
-    console.log(errors);
+
+    if (errors) {
+      errors.forEach((item) => dispatch(setAlert(item.msg, "danger")));
+    }
   }
 };
 
@@ -73,14 +77,14 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+    dispatch(setAlert("Authorization successful", "success"));
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
-    /*
-        if (errors) {
-          errors.forEach((item) => dispatch(setAlert(item.msg, "danger")));
-        }
-        */
+
+    if (errors) {
+      errors.forEach((item) => dispatch(setAlert(item.msg, "danger")));
+    }
     dispatch({
       type: LOGIN_FAIL,
     });

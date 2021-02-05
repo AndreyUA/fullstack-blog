@@ -10,6 +10,8 @@ import {
   DELETE_COMMENT,
 } from "./types";
 
+import { setAlert } from "./alert";
+
 // Get posts
 export const getPosts = () => async (dispatch) => {
   try {
@@ -40,6 +42,8 @@ export const addPost = (formData) => async (dispatch) => {
       type: ADD_POST,
       payload: response.data,
     });
+
+    dispatch(setAlert("You created a new post", "success"));
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
@@ -55,6 +59,8 @@ export const deletePost = (id) => async (dispatch) => {
       type: DELETE_POST,
       payload: id,
     });
+
+    dispatch(setAlert("You deleted your post", "danger"));
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
@@ -85,6 +91,8 @@ export const addLike = (id) => async (dispatch) => {
       type: UPDATE_LIKE,
       payload: { id, likes: response.data },
     });
+
+    dispatch(setAlert("You liked a post", "success"));
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
@@ -100,6 +108,8 @@ export const removeLike = (id) => async (dispatch) => {
       type: UPDATE_LIKE,
       payload: { id, likes: response.data },
     });
+
+    dispatch(setAlert("You unliked a post", "danger"));
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
@@ -125,6 +135,8 @@ export const addComment = (id, formData) => async (dispatch) => {
       type: ADD_COMMENT,
       payload: response.data,
     });
+
+    dispatch(setAlert("You added a comment", "success"));
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
@@ -143,6 +155,8 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
       type: DELETE_COMMENT,
       payload: response.data,
     });
+
+    dispatch(setAlert("You removed a comment", "danger"));
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);

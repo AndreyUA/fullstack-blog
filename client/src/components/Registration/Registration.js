@@ -100,6 +100,9 @@ const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
 });
 
-Registration.propTypes = { isAuth: PropTypes.bool };
+Registration.propTypes = {
+  isAuth: PropTypes.bool,
+  registration: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, { registration })(Registration);

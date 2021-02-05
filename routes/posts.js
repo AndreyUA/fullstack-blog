@@ -45,7 +45,9 @@ router.post(
 // @access      Private
 router.get("/", auth, async (req, res) => {
   try {
-    const posts = await Post.find().sort({ date: -1 });
+    const posts = await (await Post.find().sort({ date: -1 })).filter(
+      (post) => post.isRemoved === false
+    );
     res.json(posts);
   } catch (error) {
     console.log(error.message);
@@ -70,7 +72,9 @@ router.delete("/:id", auth, async (req, res) => {
       return res.status(401).json({ msg: "User not authorized" });
     }
 
-    await post.remove();
+    post.isRemoved = true;
+
+    await post.save();
 
     res.json({ msg: "Post removed" });
   } catch (error) {
