@@ -18,13 +18,24 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   status: {
-    text : {
+    text: {
       type: String,
     },
     date: {
       type: Date,
       default: Date.now,
-    }
+    },
+  },
+  birthday: {
+    type: Date,
+  },
+  adress: {
+    country: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
   },
   date: {
     type: Date,

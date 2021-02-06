@@ -1,0 +1,12 @@
+.ProfilePage {
+  display: flex;
+  flex-direction: row;
+  width: 750px;
+  margin: 40px auto;
+  padding: 10px;
+}
+
+.ProfilePage_column {
+  margin: 0 10px;
+  max-width: 200px;
+}
