@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
 
 import "./Registration.css";
 import Input from "../UI/Input/Input";

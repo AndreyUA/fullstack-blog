@@ -23,19 +23,16 @@ const UserSchema = new mongoose.Schema({
     },
     date: {
       type: Date,
-      default: Date.now,
     },
   },
   birthday: {
     type: Date,
   },
-  adress: {
-    country: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
+  country: {
+    type: String,
+  },
+  city: {
+    type: String,
   },
   date: {
     type: Date,

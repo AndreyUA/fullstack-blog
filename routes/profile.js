@@ -28,7 +28,7 @@ router.get("/:id", auth, async (req, res) => {
 // @desc        Change user's profile by id
 // @access      Private
 router.put("/:id", auth, async (req, res) => {
-  const { name, status, birthday, adress } = req.body;
+  const { name, status, birthday, country, city } = req.body;
 
   try {
     const user = await User.findById(req.params.id).select("-password");
@@ -42,17 +42,30 @@ router.put("/:id", auth, async (req, res) => {
       return res.status(401).json({ errors: [{ msg: "User not authorized" }] });
     }
 
+    // check status length
+    if (status.text.split(" ").length > 40) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Your status is too long" }] });
+    }
+
     user.name = name;
-    user.status = status;
+
+    // check status change
+    if (user.status.text !== status.text) {
+      user.status = {
+        text: status.text,
+        date: Date.now(),
+      };
+    }
+
     user.birthday = birthday;
-    user.adress = adress;
+    user.country = country;
+    user.city = city;
 
     await user.save();
 
     res.json(user);
-
-    // все рабочее уже, но еще не правильно как-то реагирует смена статуса
-    // проверяй в постмане
   } catch (error) {
     console.log(error.message);
 

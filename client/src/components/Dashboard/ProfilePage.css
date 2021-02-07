@@ -7,6 +7,33 @@
 }
 
 .ProfilePage_column {
-  margin: 0 10px;
-  max-width: 200px;
+  margin: 0 20px;
+  max-width: 260px;
+}
+
+.ProfilePage_column_part {
+  padding-bottom: 5px;
+  border-bottom: 1px solid coral;
+  margin-bottom: 10px;
+}
+
+.ProfilePage_column_control {
+  display: flex;
+}
+
+.ProfilePage_column_btn {
+  width: 150px;
+}
+
+.ProfilePage_btn {
+  background-color: coral;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.ProfilePage_btn:hover {
+  opacity: 0.6;
 }

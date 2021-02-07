@@ -4,6 +4,7 @@ import "./Input.css";
 const Input = ({
   name,
   onChange,
+  onClick,
   value,
   type,
   placeholder,
@@ -25,6 +26,7 @@ const Input = ({
         id={label}
         name={name}
         onChange={onChange}
+        onClick={onClick}
         required={required}
         type={type}
         placeholder={placeholder}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Moment from "react-moment";
+import { Link } from "react-router-dom";
 import "./PostItem.css";
 
 import { connect } from "react-redux";
@@ -30,7 +31,8 @@ const PostsItem = ({
       <img className="PostsItem_pic" src={avatar} alt="avatar_pic" />
       <div className="PostItem_main">
         <div className="PostsItem_title">
-          <p className="PostItem_name">{name}</p>
+          {_id === user ? <Link className="PostItem_name" to="/dashboard">{name} (your page)</Link> : null}
+          
           <Moment className="PostItem_date" format="DD MMMM, YYYY on HH:mm">
             {date}
           </Moment>
