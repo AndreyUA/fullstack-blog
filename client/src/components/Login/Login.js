@@ -14,14 +14,10 @@ const Login = ({ login, isAuth }) => {
     password: "",
   });
 
-  const [isValid, setIsValid] = useState(false);
-
   const { email, password } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // надо добавить тут валидацию форм
   };
 
   const handleSubmit = async (e) => {
@@ -61,12 +57,7 @@ const Login = ({ login, isAuth }) => {
 
           <p>Fill in all the fields!</p>
 
-          <Input
-            disabled={isValid}
-            className="Input_submit"
-            type="submit"
-            value="Submit"
-          />
+          <Input className="Input_submit" type="submit" value="Submit" />
         </form>
       </div>
     </div>

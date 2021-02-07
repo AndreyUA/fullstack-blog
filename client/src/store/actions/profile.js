@@ -15,6 +15,10 @@ export const getProfile = (id) => async (dispatch) => {
   } catch (error) {
     const errors = error.response.data.errors;
     console.log(errors);
+
+    if (errors) {
+      errors.forEach((item) => dispatch(setAlert(item.msg, "danger")));
+    }
   }
 };
 
@@ -43,4 +47,10 @@ export const updateProfile = (id, formData) => async (dispatch) => {
       errors.forEach((item) => dispatch(setAlert(item.msg, "danger")));
     }
   }
+};
+
+export const clearProfile = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_PROFILE,
+  });
 };

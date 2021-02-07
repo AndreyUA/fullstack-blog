@@ -48,6 +48,12 @@
 .PostItem_name {
   font-weight: bold;
   margin: 0 10px;
+  color: coral;
+  text-decoration: none;
+}
+
+.PostItem_name:hover {
+  text-decoration: underline;
 }
 
 .PostItem_date {

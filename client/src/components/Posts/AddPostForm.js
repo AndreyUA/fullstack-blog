@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import axios from "axios";
-
 import "./AddPostForm.css";
 import Input from "../UI/Input/Input";
 

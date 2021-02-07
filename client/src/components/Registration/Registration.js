@@ -7,8 +7,9 @@ import Input from "../UI/Input/Input";
 
 import { connect } from "react-redux";
 import { registration } from "../../store/actions/auth";
+import { setAlert } from "../../store/actions/alert";
 
-const Registration = ({ isAuth, registration }) => {
+const Registration = ({ isAuth, registration, setAlert }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,21 +17,20 @@ const Registration = ({ isAuth, registration }) => {
     password2: "",
   });
 
-  const [isValid, setIsValid] = useState(false);
-
   const { name, email, password, password2 } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // надо добавить тут валидацию форм
-    // валидация пароля1 и пароля2
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    registration(formData);
+    if (password !== password2) {
+      setAlert("Passwords do not mutch!", "danger");
+    } else {
+      registration(formData);
+    }
   };
 
   if (isAuth) {
@@ -83,12 +83,7 @@ const Registration = ({ isAuth, registration }) => {
 
           <p>Fill in all the fields!</p>
 
-          <Input
-            disabled={isValid}
-            className="Input_submit"
-            type="submit"
-            value="Submit"
-          />
+          <Input className="Input_submit" type="submit" value="Submit" />
         </form>
       </div>
     </div>
@@ -102,6 +97,9 @@ const mapStateToProps = (state) => ({
 Registration.propTypes = {
   isAuth: PropTypes.bool,
   registration: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { registration })(Registration);
+export default connect(mapStateToProps, { registration, setAlert })(
+  Registration
+);

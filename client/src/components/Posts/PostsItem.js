@@ -31,7 +31,8 @@ const PostsItem = ({
       <img className="PostsItem_pic" src={avatar} alt="avatar_pic" />
       <div className="PostItem_main">
         <div className="PostsItem_title">
-          {_id === user ? <Link className="PostItem_name" to="/dashboard">{name} (your page)</Link> : null}
+          {_id === user ? <Link className="PostItem_name" to="/dashboard">{name} (your page)</Link> : 
+          <Link className="PostItem_name" to={`/dashboard/${user}`}>{name}</Link>}
           
           <Moment className="PostItem_date" format="DD MMMM, YYYY on HH:mm">
             {date}

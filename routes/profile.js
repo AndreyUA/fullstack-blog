@@ -27,6 +27,9 @@ router.get("/:id", auth, async (req, res) => {
 // @route       PUT api/profile/id
 // @desc        Change user's profile by id
 // @access      Private
+
+// нужно сделать обработку пустых полей как-то. чтоб небыло все обязательным
+
 router.put("/:id", auth, async (req, res) => {
   const { name, status, birthday, country, city } = req.body;
 
@@ -52,11 +55,15 @@ router.put("/:id", auth, async (req, res) => {
     user.name = name;
 
     // check status change
-    if (user.status.text !== status.text) {
-      user.status = {
-        text: status.text,
-        date: Date.now(),
-      };
+    console.log(status);
+
+    if (status.text) {
+      if (user.status.text !== status.text) {
+        user.status = {
+          text: status.text,
+          date: Date.now(),
+        };
+      }
     }
 
     user.birthday = birthday;

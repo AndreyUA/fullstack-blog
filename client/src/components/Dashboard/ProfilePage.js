@@ -5,7 +5,6 @@ import Moment from "react-moment";
 import moment from "moment";
 import "./ProfilePage.css";
 import Input from "../UI/Input/Input";
-import Loader from "../UI/Loader/Loader";
 import CorrectProfile from "./CorrectProfile";
 
 const ProfilePage = ({
@@ -13,7 +12,10 @@ const ProfilePage = ({
 }) => {
   const [correct, setCorrect] = useState(false);
 
-  const statusDate = moment(status.date).fromNow();
+  let statusDate;
+  if (status && status.text) {
+    statusDate = moment(status.date).fromNow();
+  }
 
   const correctHandler = (e) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ const ProfilePage = ({
         <div className="ProfilePage_column">
           <div className="ProfilePage_column_part">
             <h1>{name}</h1>
-            {status.text ? (
+            {status && status.text ? (
               <>
                 <h4>{status.text}</h4>
                 <span>Updated {statusDate}</span>
@@ -42,7 +44,7 @@ const ProfilePage = ({
           <h5>
             Birthday: <Moment format="DD MMMM, YYYY">{birthday}</Moment>{" "}
           </h5>
-          <h5>Adress: {`${country}, ${city}`}</h5>
+          {country && city && <h5>Adress: {`${country}, ${city}`}</h5>}
         </div>
         <div className="ProfilePage_column ProfilePage_column_control">
           <Input

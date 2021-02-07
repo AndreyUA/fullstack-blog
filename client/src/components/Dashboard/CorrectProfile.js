@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import Input from "../UI/Input/Input";
@@ -12,15 +12,33 @@ const CorrectProfile = ({ profile, user: { _id }, updateProfile }) => {
     name: profile.name || null,
     country: profile.country,
     city: profile.city,
-    birthday: `${new Date(profile.birthday).getFullYear()}-${
-      new Date(profile.birthday).getMonth() + 1 < 10
-        ? `0${new Date(profile.birthday).getMonth() + 1}`
-        : new Date(profile.birthday).getMonth() + 1
-    }-${new Date(profile.birthday).getDate()}`,
+    birthday: profile.birthday
+      ? `${new Date(profile.birthday).getFullYear()}-${
+          new Date(profile.birthday).getMonth() + 1 < 10
+            ? `0${new Date(profile.birthday).getMonth() + 1}`
+            : new Date(profile.birthday).getMonth() + 1
+        }-${
+          new Date(profile.birthday).getDate() < 10
+            ? `0${new Date(profile.birthday).getDate()}`
+            : new Date(profile.birthday).getDate()
+        }`
+      : `${new Date(new Date()).getFullYear()}-${
+          new Date(new Date()).getMonth() + 1 < 10
+            ? `0${new Date(new Date()).getMonth() + 1}`
+            : new Date(new Date()).getMonth() + 1
+        }-${
+          new Date(new Date()).getDate() < 10
+            ? `0${new Date(new Date()).getDate()}`
+            : new Date(new Date()).getDate()
+        }`,
     status: profile.status,
   });
 
   const { name, country, city, birthday, status } = formData;
+
+  useEffect(() => {
+    console.log(birthday);
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,6 +95,7 @@ const CorrectProfile = ({ profile, user: { _id }, updateProfile }) => {
             placeholder="Your birthday"
             value={birthday}
           />
+
           <Input
             label="your-status"
             labelTxt="Enter your status"
@@ -84,10 +103,14 @@ const CorrectProfile = ({ profile, user: { _id }, updateProfile }) => {
             name="status"
             onChange={handleStatusChange}
             placeholder="Your status"
-            value={status.text}
+            value={status ? status.text : ""}
           />
 
-          <Input className="ProfilePage_btn ProfilePage_btn-chg" type="submit" value="Submit" />
+          <Input
+            className="ProfilePage_btn ProfilePage_btn-chg"
+            type="submit"
+            value="Submit"
+          />
         </form>
       </div>
     </div>
