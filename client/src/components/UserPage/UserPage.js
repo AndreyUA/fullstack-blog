@@ -18,7 +18,6 @@ const UserPage = ({
   const id = match.params.id;
 
   useEffect(() => {
-    console.log(id);
     clearProfile();
     getProfile(id);
   }, [clearProfile, getProfile, id]);
@@ -35,7 +34,7 @@ const UserPage = ({
           <div className="ProfilePage_column">
             <div className="ProfilePage_column_part">
               <h1>{profile.name}</h1>
-              {profile.status.text ? (
+              {profile.status && profile.status.text ? (
                 <>
                   <h4>{profile.status.text}</h4>
                   <span>Updated {moment(profile.status.date).fromNow()}</span>

@@ -32,6 +32,12 @@
   outline: none;
   border: none;
   cursor: pointer;
+
+  display: block;
+}
+
+.PostItem_delete span {
+  display: block;
 }
 
 .PostItem_delete:hover {

@@ -31,9 +31,16 @@ const PostsItem = ({
       <img className="PostsItem_pic" src={avatar} alt="avatar_pic" />
       <div className="PostItem_main">
         <div className="PostsItem_title">
-          {_id === user ? <Link className="PostItem_name" to="/dashboard">{name} (your page)</Link> : 
-          <Link className="PostItem_name" to={`/dashboard/${user}`}>{name}</Link>}
-          
+          {_id === user ? (
+            <Link className="PostItem_name" to="/dashboard">
+              {name} (your page)
+            </Link>
+          ) : (
+            <Link className="PostItem_name" to={`/dashboard/${user}`}>
+              {name}
+            </Link>
+          )}
+
           <Moment className="PostItem_date" format="DD MMMM, YYYY on HH:mm">
             {date}
           </Moment>
@@ -42,7 +49,7 @@ const PostsItem = ({
               onClick={(e) => deletePostHandler(e)}
               className="PostItem_delete"
             >
-              &#10006;
+              <span>&#10006;</span>
             </button>
           ) : null}
         </div>

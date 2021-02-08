@@ -28,8 +28,6 @@ router.get("/:id", auth, async (req, res) => {
 // @desc        Change user's profile by id
 // @access      Private
 
-// нужно сделать обработку пустых полей как-то. чтоб небыло все обязательным
-
 router.put("/:id", auth, async (req, res) => {
   const { name, status, birthday, country, city } = req.body;
 
@@ -46,16 +44,13 @@ router.put("/:id", auth, async (req, res) => {
     }
 
     // check status length
-    if (status.text.split(" ").length > 40) {
+    if (status.text && status.text.split(" ").length > 40) {
       return res
         .status(400)
         .json({ errors: [{ msg: "Your status is too long" }] });
     }
 
     user.name = name;
-
-    // check status change
-    console.log(status);
 
     if (status.text) {
       if (user.status.text !== status.text) {

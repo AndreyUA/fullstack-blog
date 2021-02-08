@@ -30,17 +30,19 @@ function Landing() {
             <p>NodeJS</p>
           </div>
         </div>
-        <h3>Another technologies:</h3>
-        <p className="Landing_text">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. Lorem Ipsum is simply dummy
-          text of the printing and typesetting industry. Lorem Ipsum has been
-          the industry's standard dummy text ever since the 1500s, when an
-          unknown printer took a galley of type and scrambled it to make a type
-          specimen book.
-        </p>
+        <h3>Another technologies</h3>
+        <div className="Landing_text">
+          <strong>Backend:</strong>
+          <p>
+            bcryptjs, config, express-validator, gravatar, jsonwebtoken,
+            mongoose; <br /> concurrently and nodemon as dev dependencies.
+          </p>
+          <strong>Frontend:</strong>
+          <p>
+            axios, is_js, moment, react-moment, redux, react-redux,
+            redux-devtools-extension, redux-thunk, react-router-dom, uuidv4.
+          </p>
+        </div>
       </div>
     </div>
   );

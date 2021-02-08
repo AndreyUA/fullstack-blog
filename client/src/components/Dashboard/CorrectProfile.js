@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Input from "../UI/Input/Input";
@@ -9,9 +9,9 @@ import { updateProfile } from "../../store/actions/profile";
 
 const CorrectProfile = ({ profile, user: { _id }, updateProfile }) => {
   const [formData, setFormData] = useState({
-    name: profile.name || null,
-    country: profile.country,
-    city: profile.city,
+    name: profile.name,
+    country: profile.country || "",
+    city: profile.city || "",
     birthday: profile.birthday
       ? `${new Date(profile.birthday).getFullYear()}-${
           new Date(profile.birthday).getMonth() + 1 < 10
@@ -30,15 +30,11 @@ const CorrectProfile = ({ profile, user: { _id }, updateProfile }) => {
           new Date(new Date()).getDate() < 10
             ? `0${new Date(new Date()).getDate()}`
             : new Date(new Date()).getDate()
-        }`,
-    status: profile.status,
+        }` || "",
+    status: profile.status || "",
   });
 
   const { name, country, city, birthday, status } = formData;
-
-  useEffect(() => {
-    console.log(birthday);
-  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
