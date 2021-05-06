@@ -1,6 +1,8 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
 
+const { chunk } = require("lodash");
+
 const auth = require("../middleware/auth");
 const User = require("../models/User");
 const Post = require("../models/Post");
@@ -43,12 +45,18 @@ router.post(
 // @route       GET api/posts
 // @desc        Get all posts
 // @access      Private
-router.get("/", auth, async (req, res) => {
+router.get("/part/:pageId", auth, async (req, res) => {
   try {
     const posts = await (await Post.find().sort({ date: -1 })).filter(
       (post) => post.isRemoved === false
     );
-    res.json(posts);
+
+    const dividedPosts = chunk(posts, 3);
+
+    res.json({
+      selected: dividedPosts[req.params.pageId],
+      length: dividedPosts.length,
+    });
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Server error");

@@ -11,7 +11,7 @@ import Loader from "../UI/Loader/Loader";
 
 const Posts = ({ posts: { posts }, getPosts }) => {
   useEffect(() => {
-    getPosts();
+    getPosts(1);
   }, [getPosts]);
 
   return (

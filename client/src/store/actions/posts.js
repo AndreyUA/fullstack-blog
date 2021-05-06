@@ -13,13 +13,15 @@ import {
 import { setAlert } from "./alert";
 
 // Get posts
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (pageId) => async (dispatch) => {
   try {
-    const response = await axios.get("/api/posts");
+    const response = await axios.get(`/api/posts/part/${pageId}`);
+
+    console.log(response.data);
 
     dispatch({
       type: GET_POSTS,
-      payload: response.data,
+      payload: response.data.selected,
     });
   } catch (error) {
     const errors = error.response.data.errors;
