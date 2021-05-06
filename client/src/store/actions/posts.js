@@ -17,11 +17,12 @@ export const getPosts = (pageId) => async (dispatch) => {
   try {
     const response = await axios.get(`/api/posts/part/${pageId}`);
 
-    console.log(response.data);
-
     dispatch({
       type: GET_POSTS,
-      payload: response.data.selected,
+      payload: {
+        posts: response.data.selected,
+        length: response.data.length,
+      },
     });
   } catch (error) {
     const errors = error.response.data.errors;

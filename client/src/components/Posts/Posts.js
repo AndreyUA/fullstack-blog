@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import "./Posts.css";
@@ -9,10 +9,14 @@ import { connect } from "react-redux";
 import { getPosts } from "../../store/actions/posts";
 import Loader from "../UI/Loader/Loader";
 
-const Posts = ({ posts: { posts }, getPosts }) => {
+const Posts = ({ posts: allPosts, getPosts }) => {
+  const { posts, length } = allPosts;
+
+  const [pageNumber, setPageNumber] = useState(0);
+
   useEffect(() => {
-    getPosts(1);
-  }, [getPosts]);
+    getPosts(pageNumber);
+  }, [getPosts, pageNumber]);
 
   return (
     <div className="Posts">
