@@ -35,6 +35,9 @@ const PaginationWrapper = styled.div`
   }
 `;
 
+// TODO: fixed alert in console
+// key prop for pagination
+
 // React component
 const PaginationBlock = ({ quantity, navPostsHandler, actualNumber }) => {
   return (

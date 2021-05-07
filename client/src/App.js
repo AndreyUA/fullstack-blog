@@ -37,7 +37,6 @@ const App = () => {
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
             <PrivateRoute path="/posts" exact component={Posts} />
             <PrivateRoute path="/posts/:id" exact component={Post} />
-
             <Redirect to={"/"} />
           </Switch>
         </Layout>
