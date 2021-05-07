@@ -14,6 +14,15 @@ const Posts = ({ posts: allPosts, getPosts }) => {
   const { posts, length } = allPosts;
 
   const [pageNumber, setPageNumber] = useState(0);
+  const changePageNumberHandler = (num) => {
+    if (num <= 0) {
+      setPageNumber(0);
+    } else if (num >= length - 1) {
+      setPageNumber(length - 1);
+    } else {
+      setPageNumber(num);
+    }
+  };
 
   useEffect(() => {
     getPosts(pageNumber);
@@ -36,7 +45,7 @@ const Posts = ({ posts: allPosts, getPosts }) => {
       {posts.length && (
         <Pagination
           quantity={length}
-          navPostsHandler={setPageNumber}
+          navPostsHandler={changePageNumberHandler}
           actualNumber={pageNumber}
         />
       )}

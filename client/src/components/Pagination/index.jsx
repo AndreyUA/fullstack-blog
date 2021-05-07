@@ -19,10 +19,19 @@ const PaginationWrapper = styled.div`
 const PaginationArrowButton = styled.button`
   width: 40px;
   height: 26px;
+  border-radius: 5px;
+  background-color: #1cbf1c;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;
-// bug with styles of active button
 const PaginationNavButton = styled(PaginationArrowButton)`
-  background-color: ${(props) => (props.isActive ? "red" : "white")};
+  background-color: ${(props) => (props.isActive ? "coral" : "#0060fc")};
 `;
 
 // React component
@@ -32,7 +41,7 @@ const Pagination = ({ quantity, navPostsHandler, actualNumber }) => {
   for (let i = 1; i <= quantity; i++) {
     arrButton.push(
       <PaginationNavButton
-        isActive={i === actualNumber}
+        isActive={i - 1 === actualNumber}
         onClick={() => navPostsHandler(i - 1)}
         key={i}
       >
