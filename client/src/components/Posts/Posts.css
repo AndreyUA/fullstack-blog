@@ -1,9 +1,5 @@
 .Posts {
   width: 750px;
-
-  max-height: 750px;
-  margin: 40px auto;
+  margin: 20px auto 10px auto;
   padding: 10px;
-
-  overflow: auto;
 }

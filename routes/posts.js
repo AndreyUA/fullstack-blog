@@ -53,8 +53,14 @@ router.get("/part/:pageId", auth, async (req, res) => {
 
     const dividedPosts = chunk(posts, 3);
 
+    // Validation of page number
+    let pageNumber = req.params.pageId;
+    if (req.params.pageId < 0) pageNumber = 0;
+    if (req.params.pageId > dividedPosts.length - 1)
+      pageNumber = dividedPosts.length - 1;
+
     res.json({
-      selected: dividedPosts[req.params.pageId],
+      selected: dividedPosts[pageNumber],
       length: dividedPosts.length,
     });
   } catch (error) {

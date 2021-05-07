@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "./Posts.css";
 import PostItem from "./PostsItem";
 import AddPostForm from "./AddPostForm";
+import Pagination from "../Pagination";
 
 import { connect } from "react-redux";
 import { getPosts } from "../../store/actions/posts";
@@ -19,30 +20,37 @@ const Posts = ({ posts: allPosts, getPosts }) => {
   }, [getPosts, pageNumber]);
 
   return (
-    <div className="Posts">
-      <AddPostForm />
-      {posts.length === 0 ? (
-        <Loader />
-      ) : (
-        posts.map((post) => (
-          <div key={post._id}>
-            <PostItem post={post} />
-          </div>
-        ))
+    <>
+      <div className="Posts">
+        <AddPostForm />
+        {posts.length === 0 ? (
+          <Loader />
+        ) : (
+          posts.map((post) => (
+            <div key={post._id}>
+              <PostItem post={post} />
+            </div>
+          ))
+        )}
+      </div>
+      {posts.length && (
+        <Pagination
+          quantity={length}
+          navPostsHandler={setPageNumber}
+          actualNumber={pageNumber}
+        />
       )}
-    </div>
+    </>
   );
 };
 
 Posts.propTypes = {
   posts: PropTypes.object.isRequired,
   getPosts: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   posts: state.posts,
-  isAuth: state.auth.isAuth,
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);
