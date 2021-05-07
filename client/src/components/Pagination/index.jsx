@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+// Components
+import PaginationButtons from "../PaginationButtons";
+
 // Styled components
 const PaginationWrapper = styled.div`
   box-sizing: border-box;
@@ -30,32 +33,19 @@ const PaginationArrowButton = styled.button`
     opacity: 0.6;
   }
 `;
-const PaginationNavButton = styled(PaginationArrowButton)`
-  background-color: ${(props) => (props.isActive ? "coral" : "#0060fc")};
-`;
 
 // React component
 const Pagination = ({ quantity, navPostsHandler, actualNumber }) => {
-  const arrButton = [];
-
-  for (let i = 1; i <= quantity; i++) {
-    arrButton.push(
-      <PaginationNavButton
-        isActive={i - 1 === actualNumber}
-        onClick={() => navPostsHandler(i - 1)}
-        key={i}
-      >
-        {i}
-      </PaginationNavButton>
-    );
-  }
-
   return (
     <PaginationWrapper>
       <PaginationArrowButton onClick={() => navPostsHandler(actualNumber - 1)}>
         &#60;
       </PaginationArrowButton>
-      {arrButton}
+      <PaginationButtons
+        qty={quantity}
+        active={actualNumber}
+        handleChange={navPostsHandler}
+      />
       <PaginationArrowButton onClick={() => navPostsHandler(actualNumber + 1)}>
         &#62;
       </PaginationArrowButton>
