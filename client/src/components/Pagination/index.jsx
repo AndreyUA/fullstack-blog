@@ -45,7 +45,6 @@ const PaginationBlock = ({ quantity, navPostsHandler, actualNumber }) => {
       <Pagination
         classes={{
           root: "material-pagination",
-          button: "material-label",
         }}
         size="large"
         count={quantity}

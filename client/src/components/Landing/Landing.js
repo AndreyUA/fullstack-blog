@@ -40,7 +40,8 @@ function Landing() {
           <strong>Frontend:</strong>
           <p>
             axios, is_js, moment, react-moment, redux, react-redux,
-            redux-devtools-extension, redux-thunk, react-router-dom, uuidv4.
+            redux-devtools-extension, redux-thunk, react-router-dom, uuidv4,
+            styled-components, material-ui.
           </p>
         </div>
       </div>

@@ -35,7 +35,7 @@ const Posts = ({ posts: allPosts, getPosts }) => {
         {posts.length === 0 ? (
           <Loader />
         ) : (
-          posts.map((post) => (
+          posts.slice(0, 3).map((post) => (
             <div key={post._id}>
               <PostItem post={post} />
             </div>
